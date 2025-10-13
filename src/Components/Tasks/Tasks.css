@@ -1,0 +1,374 @@
+/* General Task Form Styling (Image 94c024) */
+.tasks-container {
+  padding: 10px;
+  max-width: 100%; /* Simulating a mobile/app view */
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  background-color: #f7f9fc; /* Light background */
+}
+
+.task-form-main {
+  background-color: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.header-title {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #333;
+}
+
+.save-btn-main {
+  background-color: #007bff;
+  border: none;
+  font-weight: 500;
+  padding: 6px 15px;
+  border-radius: 20px;
+}
+
+/* Input Fields (Task Title, Description, Notes) */
+.input-field {
+  border: none !important;
+  border-bottom: 1px solid #f0f0f0 !important;
+  padding: 10px 0;
+  border-radius: 0 !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  font-size: 1.05em;
+  color: #333;
+}
+.input-field:focus {
+  border-bottom: 2px solid #007bff !important;
+}
+
+.title-field,
+.desc-field {
+  font-weight: 500;
+}
+
+/* Navigable Input List Style (for Project, Dates, Notifications, Add Documents) */
+.nav-list-container,
+.notes-container,
+.navigable-input-wrapper {
+  background-color: white;
+  padding: 0;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.navigable-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee; /* Separator line */
+  transition: background-color 0.1s;
+}
+
+.navigable-input:last-child {
+  border-bottom: none;
+}
+
+.navigable-input:hover {
+  background-color: #f7f7f7;
+}
+
+.navigable-input-label {
+  font-weight: 500;
+  color: #333;
+}
+
+.navigable-input-value {
+  color: #999;
+  font-size: 0.9em;
+}
+
+.navigable-input-arrow {
+  font-size: 1.2em;
+  color: #bbb;
+}
+
+/* Notes specific styling */
+.notes-container .input-field {
+  border: 1px solid #e9ecef !important;
+  border-radius: 8px !important;
+  padding: 10px;
+  min-height: 80px;
+}
+
+/* --- Offcanvas Overrides --- */
+.tasks-offcanvas {
+  max-width: 100%;
+  width: 100%;
+  height: 100vh;
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.1);
+  background-color: #f7f9fc;
+}
+
+.offcanvas-header-custom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: white;
+  border-bottom: 1px solid #eee;
+}
+
+.offcanvas-title-custom {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
+}
+
+.back-button {
+  cursor: pointer;
+  color: #007bff;
+}
+
+.save-btn-offcanvas {
+  background-color: #007bff;
+  border: none;
+  font-weight: 500;
+  padding: 8px 20px;
+  border-radius: 8px;
+}
+
+.offcanvas-body-custom {
+  padding: 20px 15px;
+}
+
+/* --- Notifications Styling (Image 94c002) --- */
+.divider {
+  border-top: 1px solid #eee;
+  margin: 15px 0;
+}
+
+.reminder-option-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  font-weight: 500;
+  color: #333;
+}
+
+/* Custom Toggle Switch (Simulating iOS/Android switch for Auto/Custom Reminder) */
+.custom-toggle .form-check-input {
+  width: 38px;
+  height: 20px;
+  margin-left: -1.75rem;
+  cursor: pointer;
+  background-color: #ced4da; /* Grey for Off (Auto Reminder) */
+  border-color: #ced4da;
+  float: right;
+  background-image: none !important; /* To prevent React-Bootstrap's default checkmark */
+}
+.custom-toggle .form-check-input:checked {
+  background-color: #007bff; /* Blue for On (Auto Reminder) */
+  border-color: #007bff;
+}
+
+.green-toggle .form-check-input:checked {
+  background-color: #28a745; /* Green for On (Custom Reminder in image) */
+  border-color: #28a745;
+}
+
+.custom-reminder-input .input-field {
+  border: 1px solid #e9ecef !important;
+  border-radius: 8px !important;
+  padding: 10px;
+  min-height: 80px;
+  background-color: #f7f7f7 !important;
+}
+
+/* --- Assign To Styling (Image 94bfcb) --- */
+.search-group {
+  display: flex;
+  background-color: #f0f2f5;
+  border-radius: 12px;
+  padding: 5px 10px;
+  align-items: center;
+  border: 1px solid #e9ecef;
+}
+
+.search-input-field {
+  border: none !important;
+  background-color: transparent !important;
+  padding: 8px 10px;
+  font-size: 1em;
+  box-shadow: none !important;
+}
+
+.search-icon-wrapper {
+  background-color: transparent !important;
+  border: none !important;
+  color: #999;
+  padding-right: 5px;
+}
+
+.role-filters-container {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding-bottom: 5px;
+  -webkit-overflow-scrolling: touch;
+  gap: 8px;
+}
+
+.role-filter-pill {
+  flex-shrink: 0;
+  border-radius: 20px;
+  padding: 8px 15px;
+  font-size: 0.9em;
+  font-weight: 500;
+  border: 1px solid #e9ecef;
+  color: #555;
+  background-color: white;
+}
+.role-filter-pill.active {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.members-list-container {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.member-list-item-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+.member-list-item-wrapper:last-child {
+  border-bottom: none;
+}
+
+.member-info-container {
+  display: flex;
+  align-items: center;
+}
+
+.member-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ccc; /* Placeholder color */
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 0.9em;
+  margin-right: 15px;
+  /* Using specific colors for realism */
+  background-image: linear-gradient(135deg, #007bff, #5aa5ff);
+}
+
+.member-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.member-name {
+  font-weight: 600;
+  color: #333;
+}
+
+.member-role {
+  font-size: 0.85em;
+  color: #777;
+}
+
+.member-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  transition: all 0.2s;
+}
+
+.member-check.selected {
+  border-color: #007bff;
+  background-color: #e0f2ff;
+}
+
+.unselected-circle {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: white;
+}
+/* Adjusting the checkmark icon from react-bootstrap-icons to fit the circle */
+.member-check.selected svg {
+  color: #007bff;
+}
+
+/* --- Repeat Styling (Image 94bfa7) --- */
+.repeat-options-container {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.list-item-with-check {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  font-weight: 500;
+  color: #333;
+}
+.list-item-with-check:last-child {
+  border-bottom: none;
+}
+
+.check-indicator {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #ccc; /* Unselected state */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.check-indicator.selected {
+  border-color: #007bff; /* Selected state */
+  background-color: #e0f2ff;
+}
+
+.check-indicator.selected svg {
+  color: #007bff;
+  font-weight: bold;
+}

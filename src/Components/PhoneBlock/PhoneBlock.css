@@ -1,0 +1,106 @@
+/* === ОСНОВНОЙ КОНТЕЙНЕР КАРТОЧКИ === */
+.PhoneBlock {
+    /* Фон и базовые параметры */
+    background: #ffffff;             /* белый фон */
+    border-radius: 20px;             /* мягкие углы */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06); /* лёгкая тень */
+    padding: 0 15px 0;         /* внутренние отступы: сверху, по бокам, снизу */
+    width: 100%;                     /* ширина адаптивная */
+    max-width: 92vw;                 /* на мобильном не выходит за края */
+    margin: 10px auto;               /* внешний отступ между карточками */
+    overflow: hidden;                /* чтобы телефон обрезался */
+    text-align: left;              /* всё по центру */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+
+/* === ТЕКСТОВЫЙ КОНТЕНТ === */
+.PhoneText {
+    padding: 0 8px 18px 8px;         /* чуть воздуха по бокам и снизу */
+}
+
+.PhoneText h3 {
+    font-size: 20px;
+    color: #052d50;
+    font-family: "DM Sans", sans-serif; /* тёмно-синий */
+    font-weight: 300;
+    margin: 20px 0 10px;
+}
+
+.PhoneText p {
+    font-size: 16px;
+    color: #052d50;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 200;
+    line-height: 1.5;
+    margin-bottom: 20px;             /* отступ до кнопки */
+}
+
+/* === КНОПКА === */
+.btnCustom {
+    background: linear-gradient(90deg, #0785f4, #3da6ff); /* красивый градиент */
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 13px 32px;              /* вот тут регулируешь внутренние отступы —
+                                      больше = кнопка толще и “дороже” */
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 0 14px rgba(7, 133, 244, 0.25);
+}
+
+.btnCustom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(7, 133, 244, 0.35);
+}
+
+/* === ОБЁРТКА ДЛЯ ИЗОБРАЖЕНИЯ (ТЕЛЕФОНА) === */
+.PhoneImageWrapper {
+    width: 100%;
+    height: 260px;                   /* высота видимой зоны телефона */
+    overflow: hidden;                /* именно это обрезает изображение */
+    position: relative;
+    border-radius: 20px;             /* чуть скругляем края, чтобы не выглядело грубо */
+}
+
+/* === ИЗОБРАЖЕНИЕ ТЕЛЕФОНА === */
+.PhoneImage {
+    position: absolute;              /* можно двигать вверх-вниз */
+    width: 100%;
+    height: auto;
+    object-fit: cover;               /* подгон по ширине */
+    transition: transform 0.3s ease; /* плавность при hover */
+    left: 0;
+}
+/* === ВАРИАНТЫ ДВИЖЕНИЯ ТЕЛЕФОНА (НЕ ОБРЕЗАЕМ, ТОЛЬКО СДВИГАЕМ) === */
+
+/* если телефон должен “уходить вниз” — используй cropBottom */
+.cropBottom .PhoneImage {
+    position: relative;          /* телефон остаётся в потоке, без абсолютного позиционирования */
+    display: block;
+    width: 95%;
+    margin: 0 auto;
+    height: auto;                /* сохраняем полную высоту и пропорции телефона */
+    transform: translateY(0px); /* сдвигаем вниз — регулируй значение по вкусу */
+    transition: transform 0.3s ease;
+}
+
+/* если телефон должен “уходить вверх” — используй cropTop */
+.cropTop .PhoneImage {
+    position: relative;
+    display: block;
+    width: 95%;
+    margin: 0 auto;
+    height: auto;
+    transform: translateY(-360px); /* сдвигаем вверх — регулируй значение */
+    transition: transform 0.3s ease;
+}
+
+/* === ЛЁГКАЯ АНИМАЦИЯ ПРИ НАВЕДЕНИИ === */
+.PhoneImageWrapper:hover .PhoneImage {
+    transform: scale(1.015);     /* небольшой zoom при наведении */
+}

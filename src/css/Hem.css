@@ -1,0 +1,35 @@
+
+.HemPageDark,
+.HemPageLight {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    position: relative;
+}
+
+.HemPageDark {
+    background-color: #000509;
+    color: white;
+}
+
+.HemPageLight {
+    background-color: #f5f8ff;
+    color: #000;
+    padding: 20px 20px 0;
+}
+
+.CustomCard {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    text-align: center;
+}
+
+
+.CustomCard img {
+    max-width: 250px;
+}
+
+
+.FeaturesSection {
+    background: transparent;
+}

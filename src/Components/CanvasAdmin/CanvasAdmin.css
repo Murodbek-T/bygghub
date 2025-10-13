@@ -1,0 +1,221 @@
+.team-selection-container {
+  padding: 10px;
+  width: 100%;
+  background: white;
+  border-radius: 8px;
+}
+
+/* Search Section */
+.search-input-group {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.search-input {
+  max-width: 100%;
+  border: 1px solid #e9ecef;
+  border-right: none;
+  padding: 12px 16px;
+  font-size: 14px;
+  border-radius: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.search-input:focus {
+  border-color: #038ffd;
+  box-shadow: none;
+}
+
+/* Role Filters */
+.role-filters {
+  overflow-x: auto;
+}
+
+.role-buttons {
+  display: flex;
+  gap: 8px;
+  padding-bottom: 8px;
+}
+
+.role-btn {
+  white-space: nowrap;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid #e9ecef;
+  background: white;
+  color: #495057;
+}
+
+.role-btn.active,
+.role-btn:hover {
+  background-color: #038ffd;
+  border-color: #038ffd;
+  color: white;
+}
+
+.role-btn:not(.active):hover {
+  background-color: #f8f9fa;
+  color: #038ffd;
+}
+
+/* Team Members List */
+.team-members-list {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.team-member-item {
+  padding: 12px;
+  border-bottom: 1px solid #f1f3f4;
+}
+
+.team-member-item:last-child {
+  border-bottom: none;
+}
+
+.member-checkbox .form-check-input {
+  margin-right: 12px;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #dee2e6;
+}
+
+.member-checkbox .form-check-input:checked {
+  background-color: #038ffd;
+  border-color: #038ffd;
+}
+
+.member-checkbox .form-check-label {
+  width: 100%;
+  cursor: pointer;
+}
+
+.member-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.member-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #038ffd, #03d3fd);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.member-details {
+  flex: 1;
+}
+
+.member-name {
+  font-weight: 600;
+  color: #052d50;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.member-role {
+  color: #6c757d;
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+/* Selection Actions */
+.selection-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 16px;
+  border-top: 1px solid #e9ecef;
+}
+
+.selected-count {
+  color: #6c757d;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.action-btn {
+  background-color: #038ffd;
+  border-radius: 20px;
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.action-btn:hover {
+  background-color: #0391fd88;
+}
+
+/* Scrollbar Styling */
+.team-members-list::-webkit-scrollbar {
+  display: none;
+}
+
+.team-members-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.team-members-list::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.team-members-list::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+.role-buttons::-webkit-scrollbar {
+  height: 4px;
+}
+
+.role-buttons::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 2px;
+}
+
+.role-buttons::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .team-selection-container {
+    padding: 16px;
+  }
+
+  .role-buttons {
+    gap: 6px;
+  }
+
+  .role-btn {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .action-btn {
+    width: 100%;
+  }
+}

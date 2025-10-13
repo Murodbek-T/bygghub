@@ -1,0 +1,204 @@
+/* === MOBILE FIRST === */
+
+.custom-container {
+    display: flex;
+    justify-content: space-between;  /* лого слева, бургер справа */
+    align-items: center;
+    padding: 14px 20px;              /* равные отступы как в Framer */
+    max-width: 420px;                /* фиксированная ширина мобильной области */
+    margin: 0 auto;                  /* центрируем контейнер */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.custom-container > *:last-child {
+    margin-right: 20px;
+}
+
+/* === Главная кнопка "Try for free" === */
+.btn-primary {
+    background: linear-gradient(145deg, #0066ff, #004de6);
+    border: none;
+    border-radius: 12px;
+    padding: 10px 28px;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #ffffff;
+    letter-spacing: 0.3px;
+    transition: all 0.25s ease;
+    box-shadow: 0 0 8px rgba(0, 102, 255, 0.4);
+}
+
+/* Эффект при наведении */
+.btn-primary:hover {
+    background: linear-gradient(145deg, #1f7aff, #0059e6);
+    transform: translateY(-2px);
+    box-shadow: 0 0 14px rgba(0, 128, 255, 0.6);
+}
+
+/* При клике */
+.btn-primary:active {
+    transform: translateY(1px);
+    box-shadow: 0 0 4px rgba(0, 102, 255, 0.3);
+}
+
+/* === Вариант “Outline”, например для Login === */
+.btn-outline-light {
+    background: transparent;
+    color: #e6e9ee;
+    border: 1px solid rgba(70, 118, 255, 0.6);
+    border-radius: 12px;
+    padding: 9px 26px;
+    font-family: "DM Sans", sans-serif;
+    transition: all 0.25s ease;
+}
+
+.btn-outline-light:hover {
+    background: rgba(0, 89, 230, 0.15);
+    color: #ffffff;
+    border-color: #007bff;
+}
+
+
+.HeaderButtons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-img {
+    height: 20px;                    /* пропорции как в Framer */
+    width: auto;
+    transition: 0.3s;
+}
+
+.logo-img:hover {
+    transform: scale(1.03);
+}
+
+.custom-nav .nav-link{
+    font-size: 17px;
+    color: #B5C0C9;
+    font-family: "DM Sans", sans-serif; /* ← твой шрифт */
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    transition: color 0.25s ease, border-color 0.25s ease;
+    margin: -20px 0;
+    padding-top: 30px/* ← меньше расстояние между ссылками на мобилке */
+
+
+}
+
+/* БУРГЕР */
+.navbar-toggler {
+    border: 1px solid #B5C0C9;        /* видимая рамка */
+    border-radius: 8px;
+    background: rgba(181, 192, 201, 0.1);
+    padding: 6px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+}
+
+.navbar-toggler:hover {
+    border-color: #ffffff;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* ИКОНКА */
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='%23B5C0C9' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    background-size: 20px 20px;
+    width: 22px;
+    height: 22px;
+}
+
+.navbar-toggler:hover .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='%23FFFFFF' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* === DESKTOP === */
+@media (min-width: 992px) {
+
+    /* === Главная кнопка "Try for free" === */
+    .btn-primary {
+        background: linear-gradient(145deg, #0066ff, #004de6);
+        border: none;
+        border-radius: 12px;
+        padding: 10px 28px;
+        font-family: "DM Sans", sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        color: #ffffff;
+        letter-spacing: 0.3px;
+        transition: all 0.25s ease;
+        box-shadow: 0 0 8px rgba(0, 102, 255, 0.4);
+    }
+
+    /* Эффект при наведении */
+    .btn-primary:hover {
+        background: linear-gradient(145deg, #1f7aff, #0059e6);
+        transform: translateY(-2px);
+        box-shadow: 0 0 14px rgba(0, 128, 255, 0.6);
+    }
+
+    /* При клике */
+    .btn-primary:active {
+        transform: translateY(1px);
+        box-shadow: 0 0 4px rgba(0, 102, 255, 0.3);
+    }
+
+    /* === Вариант “Outline”, например для Login === */
+    .btn-outline-light {
+        background: transparent;
+        color: #e6e9ee;
+        border: 1px solid rgba(70, 118, 255, 0.6);
+        border-radius: 12px;
+        padding: 9px 26px;
+        font-family: "DM Sans", sans-serif;
+        transition: all 0.25s ease;
+    }
+
+    .btn-outline-light:hover {
+        background: rgba(0, 89, 230, 0.15);
+        color: #ffffff;
+        border-color: #007bff;
+    }
+
+
+    .custom-container {
+        display: flex;
+        max-width: 1440px; /* чтобы красиво масштабировалось */
+        padding: 16px 60px;
+    }
+
+    .logo-img {
+        height: 30px;
+    }
+
+    .custom-nav .nav-link{
+        font-size: 20px;
+        color: #B5C0C9;
+        font-family: "DM Sans", sans-serif; /* ← твой шрифт */
+        font-weight: 200;
+        letter-spacing: 0.3px;
+        text-transform: none;
+        transition: color 0.25s ease, border-color 0.25s ease;
+        border-bottom: 2px solid transparent; /* базовая линия */
+
+    }
+
+
+    .HeaderButtons {
+        display: flex;
+        flex-direction: row;
+
+    }
+
+}
+

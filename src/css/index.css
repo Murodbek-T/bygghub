@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #000509; /* фон из Framer */
+  color: #ffffff;
+}
+
+/* --- Кодовые блоки (оставим как есть) --- */
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* --- Навигационное меню --- */
+.custom-nav .nav-link {
+  color: #B5C0C9 !important;        /* базовый цвет (Neutral 03) */
+  font-weight: 400;
+  font-size: 16px;
+  transition: color 0.25s ease;
+}
+
+.custom-nav .nav-link:hover,
+.custom-nav .nav-link.active {
+  color: #ffffff !important;        /* при наведении — чисто белый */
+}

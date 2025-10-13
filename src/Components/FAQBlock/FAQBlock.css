@@ -1,0 +1,56 @@
+.FAQSection {
+    background-color: #050b15;
+    color: #fff;
+}
+
+.FAQTitle {
+    font-family: "DM Sans", sans-serif;
+    font-size: 19px;
+    color: #B5C0C9;
+    font-weight: 200;
+}
+
+.FAQList {
+    border: 1px solid rgba(128, 128, 255, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    font-family: "DM Sans", sans-serif;
+    font-size: 18px;
+    color: #B5C0C9;
+    font-weight: 300;
+
+}
+
+.FAQItem {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.FAQItem:last-child {
+    border-bottom: none;
+}
+
+.FAQItem:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.FAQQuestion {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    /*font-weight: 500;*/
+}
+
+.FAQToggle {
+    font-size: 1.5rem;
+    /*font-weight: 400;*/
+}
+
+.FAQAnswer {
+    /*margin-top: 12px;*/
+    color: #cfcfcf;
+    /*font-size: 0.95rem;*/
+    line-height: 1.6;
+}

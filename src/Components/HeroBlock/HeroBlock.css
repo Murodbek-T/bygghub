@@ -1,0 +1,104 @@
+.HeroBlock {
+    background-color: #000509;
+    z-index: 0;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.GlowWrapper {
+    position: relative;
+    overflow: hidden; /* обрезает свечение, если оно выходит */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.HeroGlow {
+    position: absolute;
+    bottom: -50px; /* можешь подстроить */
+    left: 50%;
+    transform: translateX(-50%) rotate(25deg);
+    width: 140%;
+    height: 140%;
+    background: url('../../assets/bgH.png') center/contain no-repeat;
+    /*opacity: 0.25;*/
+    pointer-events: none;
+    z-index: 0;
+}
+
+.imgHero {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: auto;
+    margin-top: 30px;
+}
+
+.LeftMargin {
+    /*margin-left: -50px;*/
+    display: flex;
+    flex-direction: column;
+    /*gap: 42px;*/
+}
+
+.RightMargin {
+    /*margin-right: 30px;*/
+}
+
+@media (min-width: 992px) {
+
+    .HeroBlock {
+        background-color: #000509;
+        z-index: 0;
+        padding: 0 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        width: 100%; /* ← вместо 1200px */
+    }
+
+    .LeftMargin {
+        /*margin-left: -50px;*/
+        display: flex;
+        flex-direction: column;
+        gap: 42px;
+    }
+
+    .imgHero {
+        position: relative;
+        z-index: 2;
+        width: auto;
+        height: 624px;
+        margin-top: 30px;
+    }
+
+    .GlowWrapper {
+        position: relative;
+        overflow: visible;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .HeroGlow {
+        position: absolute;
+        bottom: -550px; /* glow уйдёт вниз под "We know..." */
+        left: 50%;
+        transform: translateX(-70%) rotate(20deg);
+        width: 180%;
+        height: 700px;
+        background: url('../../assets/bgH.png') center/cover no-repeat;
+        filter: brightness(2) blur(70px);
+        opacity: 0.7;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+
+}

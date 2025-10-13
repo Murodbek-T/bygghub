@@ -1,0 +1,41 @@
+.Features {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* вместо center */
+    align-items: center;
+    text-align: center;
+    padding-bottom: 20px; /* отступ от нижнего текста до границы секции */
+
+}
+
+
+.Features .Title {
+    font-size: 28px;
+    font-weight: 200;
+    color: #ffffff;
+    line-height: 1.2;       /* фиксирует высоту строки */
+    margin: 0;              /* убирает лишние внешние отступы */
+    padding: 0;             /* убирает внутренние */
+    display: block;         /* гарантирует одинаковую высоту baseline */
+}
+
+
+.Features .Subtitle {
+    font-size: 18px;
+    font-weight: 200;
+    color: #b5c2d6;
+    line-height: 1.4;
+}
+
+.Features img {
+    height: 225px;
+}
+
+.TextWrapper {
+    width: 100%;
+    max-width: 390px; /* чтобы текст не растягивался */
+    text-align: left; /* выравниваем текст по левому краю */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* контент идёт вниз */
+}

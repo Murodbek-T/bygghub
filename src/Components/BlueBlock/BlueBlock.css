@@ -1,0 +1,28 @@
+.BlueBlock {
+    border-radius: 20px;
+    margin-top: 10px;
+    padding: 20px; /* ← внутренние отступы */
+    background: radial-gradient(circle at 50% 40%, #004ac4, #0078f4 70%, #45b6ff 100%);
+    box-shadow: 0 0 60px rgba(0, 150, 255, 0.6),
+    inset 0 0 40px rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* ← добавь, чтобы контент (текст и кнопка) выстроились по вертикали */
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+    gap: 30px;
+}
+
+.whiteButton {
+    background: white;
+    color: #004ac4;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 19px;
+    font-weight: 300;
+    cursor: pointer;
+    margin-bottom: 30px;
+}

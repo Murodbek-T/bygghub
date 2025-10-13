@@ -1,0 +1,27 @@
+.FaqHero{
+    padding: 72px 0 48px;
+    background:
+            radial-gradient(160% 120% at 100% 0%, rgba(0,123,255,.45), rgba(0,0,0,0) 60%),
+            #050b15;
+    color:#fff;
+}
+.FaqTitle{ font-size:42px; font-weight:600; margin:8px 0; }
+.FaqSubtitle{ color:#aeb7c7; margin:0; }
+.SectionBadge{
+    display:inline-block; padding:6px 14px; border-radius:999px;
+    font-size:.85rem; font-weight:500;
+    background:rgba(13,110,253,.12); color:#0d6efd;
+}
+
+.FaqAccordion .accordion-item{
+    background-color:transparent; border-bottom:1px solid rgba(255,255,255,.08);
+}
+.FaqAccordion .accordion-button{
+    background-color:transparent; color:#fff; padding:20px 0;
+}
+.FaqAccordion .accordion-button:not(.collapsed){
+    color:#fff; background-color:transparent; box-shadow:none;
+}
+.FaqAccordion .accordion-body{
+    color:#cfd6e4; padding:8px 0 24px 0;
+}

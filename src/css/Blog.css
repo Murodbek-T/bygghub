@@ -1,0 +1,28 @@
+.BlogHero{
+    padding:72px 0 48px;
+    background:
+            radial-gradient(160% 120% at 100% 0%, rgba(0,123,255,.45), rgba(0,0,0,0) 60%),
+            #050b15;
+    color:#fff;
+}
+.SectionBadge{
+    display:inline-block; padding:6px 14px; border-radius:999px;
+    font-size:.85rem; font-weight:500;
+    background:rgba(13,110,253,.12); color:#0d6efd;
+}
+.BlogTitle{ font-size:42px; font-weight:600; margin:8px 0; }
+.BlogSubtitle{ color:#aeb7c7; margin:0; }
+
+.BlogBody{ padding:32px 0; background:#eaf3ff40; }
+
+.BlogCard{
+    border:0; border-radius:18px; background:#fff; padding:8px;
+}
+.BlogThumb{
+    width:160px; height:120px; border-radius:18px; overflow:hidden; margin:12px;
+    background:#0a0f1c;
+}
+.BlogThumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+.BlogBadge{
+    border-radius:999px; padding:6px 12px; background:#eef5ff !important;
+}

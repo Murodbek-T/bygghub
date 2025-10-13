@@ -1,0 +1,202 @@
+.Title {
+    font-size: 28px;
+    font-weight: 200;
+    font-family: "DM Sans", sans-serif;
+    color: #FFFFFF;
+}
+
+.Subtitle {
+    font-size: 18px;
+    font-weight: 200;
+    font-family: "DM Sans", sans-serif;
+    color: #B5C0C9;
+    z-index: 1;
+}
+
+.TitleAndSubtitle.centered {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* FEATURES (средний размер) */
+.TitleAndSubtitle.features .Title {
+    font-size: 28px;
+    font-weight: 200;
+    color: #fff;
+}
+
+.TitleAndSubtitle.features .Subtitle {
+    font-family: "DM Sans", sans-serif;
+    font-size: 18px;
+    color: #85b0d9;
+    font-weight: 300;
+    margin-top: 30px;
+}
+
+/* White background */
+.TitleAndSubtitle.whiteBackground .Title {
+    font-size: 28px;
+    font-weight: 300;
+    color: #052D50;
+}
+
+.TitleAndSubtitle.whiteBackground .Subtitle {
+    font-size: 18px;
+    color: #85b0d9;
+    font-weight: 300;
+}
+
+
+/* White background */
+.TitleAndSubtitle.blueBlock .Title {
+    font-family: "DM Sans", sans-serif;
+    font-size: 30px;
+    font-weight: 200;
+    color: #FFFFFF;
+    margin-top: 20px;
+
+}
+
+.TitleAndSubtitle.blueBlock .Subtitle {
+    font-family: "DM Sans", sans-serif;
+    font-size: 22px;
+    color: #FFFFFF;
+    font-weight: 200;
+    margin-top: 20px;
+}
+
+.TitleAndSubtitle.pricingTitle .Title {
+    font-family: "DM Sans", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: #FFFFFF;
+    margin-top: 20px;
+}
+
+.TitleAndSubtitle.pricingTitle .Subtitle {
+    font-family: "DM Sans", sans-serif;
+    font-size: 17px;
+    color: #B5C0C9;
+    font-weight: 200;
+}
+
+.TitleAndSubtitle.pricingPackage .Title {
+    font-family: "DM Sans", sans-serif;
+    font-size: 28px;
+    font-weight: 200;
+    color: #FFFFFF;
+    margin-top: 40px;
+
+}
+
+.TitleAndSubtitle.pricingPackage .Subtitle {
+    font-family: "DM Sans", sans-serif;
+    font-size: 17px;
+    color: #FFFFFF;
+    font-weight: 200;
+}
+
+@media (min-width: 992px) {
+
+    .Title {
+    font-size: 64px;
+    font-weight: 200;
+    font-family: "DM Sans", sans-serif;
+    color: #FFFFFF;
+}
+
+    .Subtitle {
+        font-size: 32px;
+        font-weight: 200;
+        font-family: "DM Sans", sans-serif;
+        color: #B5C0C9;
+        z-index: 1;
+    }
+
+    .TitleAndSubtitle.centered {
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    /* FEATURES (средний размер) */
+    .TitleAndSubtitle.features .Title {
+        font-size: 28px;
+        font-weight: 200;
+        color: #fff;
+    }
+
+    .TitleAndSubtitle.features .Subtitle {
+        font-family: "DM Sans", sans-serif;
+        font-size: 18px;
+        color: #85b0d9;
+        font-weight: 300;
+        margin-top: 30px;
+    }
+
+    /* White background */
+    .TitleAndSubtitle.whiteBackground .Title {
+        font-size: 28px;
+        font-weight: 300;
+        color: #052D50;
+    }
+
+    .TitleAndSubtitle.whiteBackground .Subtitle {
+        font-size: 18px;
+        color: #85b0d9;
+        font-weight: 300;
+    }
+
+
+    /* White background */
+    .TitleAndSubtitle.blueBlock .Title {
+        font-family: "DM Sans", sans-serif;
+        font-size: 30px;
+        font-weight: 200;
+        color: #FFFFFF;
+        margin-top: 20px;
+
+    }
+
+    .TitleAndSubtitle.blueBlock .Subtitle {
+        font-family: "DM Sans", sans-serif;
+        font-size: 22px;
+        color: #FFFFFF;
+        font-weight: 200;
+        margin-top: 20px;
+    }
+
+    .TitleAndSubtitle.pricingTitle .Title {
+        font-family: "DM Sans", sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        color: #FFFFFF;
+        margin-top: 20px;
+    }
+
+    .TitleAndSubtitle.pricingTitle .Subtitle {
+        font-family: "DM Sans", sans-serif;
+        font-size: 17px;
+        color: #B5C0C9;
+        font-weight: 200;
+    }
+
+    .TitleAndSubtitle.pricingPackage .Title {
+        font-family: "DM Sans", sans-serif;
+        font-size: 28px;
+        font-weight: 200;
+        color: #FFFFFF;
+        margin-top: 40px;
+
+    }
+
+    .TitleAndSubtitle.pricingPackage .Subtitle {
+        font-family: "DM Sans", sans-serif;
+        font-size: 17px;
+        color: #FFFFFF;
+        font-weight: 200;
+    }
+}

@@ -1,0 +1,25 @@
+.admin-wrapper {
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 26px 35px;
+  background: linear-gradient(to right, #010509, #2290f9);
+}
+
+.admin-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.icon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 52px;
+  height: 52px;
+  background: #fff;
+  border-radius: 999px;
+  color: #010509;
+}
