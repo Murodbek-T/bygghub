@@ -2,11 +2,17 @@
   --primary-color: #038ffd;
 }
 
-.admin-btn-primary {
-  background-color: var(--primary-color) !important;
+.admin-btn-primary,
+.btn-primary {
+  background: var(--primary-color) !important;
   border-radius: 25px !important;
   color: white;
   margin-right: 10px;
+}
+
+.admin-btn-secondary {
+  background: #b8ddf9 !important;
+  color: var(--primary-color) !important;
 }
 
 .modal {
@@ -305,7 +311,6 @@
 .subpanel {
   width: 100%;
 }
-
 
 .subpanel-header {
   display: flex;

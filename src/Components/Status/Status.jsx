@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./Status.css";
-import { Button, Offcanvas } from "react-bootstrap";
-import { Check, ChevronLeft } from "react-bootstrap-icons";
+import { Check } from "react-bootstrap-icons";
 
 const Status = () => {
   const [selectedStatus, setSelectedStatus] = useState("");
@@ -34,46 +33,14 @@ const Status = () => {
 
   return (
     <div>
-      <NavigableInput
-        label="Status"
-        value={selectedStatus}
-        onClick={() => setShowStatus(true)}
-      />
-
-      <Offcanvas
-        show={showStatus}
-        onHide={() => setShowStatus(false)}
-        placement="end"
-        className="tasks-offcanvas"
-      >
-        <div className="offcanvas-header-custom">
-          <div className="back-button" onClick={() => setShowStatus(false)}>
-            <ChevronLeft size={24} />
-          </div>
-          <Offcanvas.Title className="offcanvas-title-custom">
-            Select Status
-          </Offcanvas.Title>
-          <Button
-            variant="primary"
-            className="save-btn-offcanvas"
-            onClick={() => setShowStatus(false)}
-          >
-            Save
-          </Button>
-        </div>
-        <Offcanvas.Body className="offcanvas-body-custom">
-          <div className="status-options-container">
-            {statusOptions.map((option) => (
-              <ListItemWithCheck
-                key={option.value}
-                label={option.label}
-                isSelected={selectedStatus === option.label}
-                onClick={() => setSelectedStatus(option.label)}
-              />
-            ))}
-          </div>
-        </Offcanvas.Body>
-      </Offcanvas>
+      {statusOptions.map((option) => (
+        <ListItemWithCheck
+          key={option.value}
+          label={option.label}
+          isSelected={selectedStatus === option.label}
+          onClick={() => setSelectedStatus(option.label)}
+        />
+      ))}
     </div>
   );
 };

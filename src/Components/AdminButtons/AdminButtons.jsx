@@ -67,7 +67,7 @@ const AdminButtons = () => {
   return (
     <div>
       <div className="admin-buttons">
-        <Button className="admin-btn-primary" onClick={handleModalShow}>
+        <Button className="admin-btn-secondary" onClick={handleModalShow}>
           Add in bulk
         </Button>
         <Modal
