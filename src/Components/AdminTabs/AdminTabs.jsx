@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import "./AdminTabs.css";
 import { Tabs, Tab, Container, Button, Modal } from "react-bootstrap";
 import AdminButtons from "../AdminButtons/AdminButtons";
+import MagnifierIcon from "../../assets/magnifier.svg";
+import FilterIcon from "../../assets/sliders.svg";
 
 const AdminTabs = () => {
-  const [selectedFilter, setSelectedFilter] = useState("all");
-  const [searchTerm, setSearchTerm] = useState("");
   const [selectedRows, setSelectedRows] = useState([]);
 
-  const [showActionModal, setShowActionModal] = useState(false);
   const [activeTab, setActiveTab] = useState("projects");
 
   //! Custom data. Later change to API content
@@ -85,22 +84,6 @@ const AdminTabs = () => {
     },
   ];
 
-  // Filter projects based on selected radio and search term
-  const filteredProjects = projectsData.filter((project) => {
-    const matchesStatus =
-      selectedFilter === "all" ||
-      project.status.toLowerCase() === selectedFilter.toLowerCase();
-
-    const matchesSearch =
-      searchTerm === "" ||
-      project.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      project.contractNo.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      project.projectManager.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      project.clientCompany.toLowerCase().includes(searchTerm.toLowerCase());
-
-    return matchesStatus && matchesSearch;
-  });
-
   const getStatusClass = (status) => {
     switch (status.toLowerCase()) {
       case "in progress":
@@ -127,34 +110,14 @@ const AdminTabs = () => {
 
   const handleSelectAll = (e) => {
     if (e.target.checked) {
-      setSelectedRows(filteredProjects.map((project) => project.id));
+      setSelectedRows(projectsData.map((project) => project.id));
     } else {
       setSelectedRows([]);
     }
   };
 
   const isAllSelected =
-    filteredProjects.length > 0 &&
-    selectedRows.length === filteredProjects.length;
-
-  // Modal handlers
-  const handleOpenActionModal = () => {
-    if (selectedRows.length === 0) {
-      alert("Please select at least one project");
-      return;
-    }
-    setShowActionModal(true);
-  };
-
-  const handleCloseActionModal = () => {
-    setShowActionModal(false);
-  };
-
-  const handleConfirmAction = () => {
-    console.log("Selected projects:", selectedRows);
-    alert(`Action performed on ${selectedRows.length} selected projects`);
-    setShowActionModal(false);
-  };
+    projectsData.length > 0 && selectedRows.length === projectsData.length;
 
   // Render different content based on active tab
   const renderTabContent = () => {
@@ -162,118 +125,110 @@ const AdminTabs = () => {
       case "projects":
         return (
           <div className="tab-content-wrapper">
-            {/* Filter Section */}
-            <div className="filter-section">
-              <div className="filter-row">
-                <div className="radio-filter-group">
-                  <label className="radio-label">
-                    <input
-                      type="radio"
-                      name="projectFilter"
-                      value="all"
-                      checked={selectedFilter === "all"}
-                      onChange={(e) => setSelectedFilter(e.target.value)}
-                    />
-                    All projects
-                  </label>
-                  <label className="radio-label">
-                    <input
-                      type="radio"
-                      name="projectFilter"
-                      value="in progress"
-                      checked={selectedFilter === "in progress"}
-                      onChange={(e) => setSelectedFilter(e.target.value)}
-                    />
-                    In progress
-                  </label>
-                  <label className="radio-label">
-                    <input
-                      type="radio"
-                      name="projectFilter"
-                      value="done"
-                      checked={selectedFilter === "done"}
-                      onChange={(e) => setSelectedFilter(e.target.value)}
-                    />
-                    Done
-                  </label>
-                  <label className="radio-label">
-                    <input
-                      type="radio"
-                      name="projectFilter"
-                      value="quotation"
-                      checked={selectedFilter === "quotation"}
-                      onChange={(e) => setSelectedFilter(e.target.value)}
-                    />
-                    Quotation
-                  </label>
-                </div>
-
-                <div className="search-filter">
-                  <input
-                    type="text"
-                    placeholder="Search projects..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                  />
-                  <button
-                    className="search-button"
-                    onClick={() => setSearchTerm("")}
-                  >
-                    {searchTerm ? "Clear" : "Search"}
-                  </button>
-                </div>
-              </div>
-            </div>
-
             {/* Projects Table */}
-            <div className="table-container">
-              <table className="projects-table">
+            <div className="table-container-main">
+              <table className="projects-table-main">
                 <thead>
                   <tr>
-                    <th className="col-select">
+                    <th className="col-select-main">
                       <input
                         type="checkbox"
-                        className="row-select"
+                        className="row-select-main"
                         checked={isAllSelected}
                         onChange={handleSelectAll}
                       />
                     </th>
-                    <th className="col-name">Name</th>
-                    <th className="col-status">Status</th>
-                    <th className="col-location">Location</th>
-                    <th className="col-contract">Contract №</th>
-                    <th className="col-date">Beginning</th>
-                    <th className="col-date">End</th>
-                    <th className="col-manager">Project manager</th>
-                    <th className="col-company">Client company</th>
-                    <th className="col-represent">Client represent</th>
-                    <th className="col-phone">Phone</th>
-                    <th className="col-email">Email</th>
+                    <th className="col-name-main">
+                      Name
+                      <span className="filter-btn">
+                        <img src={MagnifierIcon} alt="magni" />
+                      </span>
+                    </th>
+                    <th className="col-status-main">
+                      Status{" "}
+                      <span className="filter-btn">
+                        <img src={FilterIcon} alt="magni" />
+                      </span>
+                    </th>
+                    <th className="col-location-main">
+                      Location{" "}
+                      <span className="filter-btn">
+                        <img src={MagnifierIcon} alt="magni" />
+                      </span>
+                    </th>
+                    <th className="col-contract-main">
+                      Contract №{" "}
+                      <span className="filter-btn">
+                        <img src={MagnifierIcon} alt="magni" />
+                      </span>
+                    </th>
+                    <th className="col-date-main">
+                      Beginning{" "}
+                      <span className="filter-btn">
+                        <img src={FilterIcon} alt="magni" />
+                      </span>
+                    </th>
+                    <th className="col-date-main">
+                      End{" "}
+                      <span className="filter-btn">
+                        <img src={FilterIcon} alt="magni" />
+                      </span>
+                    </th>
+                    <th className="col-manager-main">
+                      Project manager{" "}
+                      <span className="filter-btn">
+                        <img src={FilterIcon} alt="magni" />
+                      </span>
+                    </th>
+                    <th className="col-company-main">
+                      Client company{" "}
+                      <span className="filter-btn">
+                        <img src={MagnifierIcon} alt="magni" />
+                      </span>
+                    </th>
+                    <th className="col-represent-main">
+                      Client represent{" "}
+                      <span className="filter-btn">
+                        <img src={MagnifierIcon} alt="magni" />
+                      </span>
+                    </th>
+                    <th className="col-phone-main">
+                      Phone{" "}
+                      <span className="filter-btn">
+                        <img src={MagnifierIcon} alt="magni" />
+                      </span>
+                    </th>
+                    <th className="col-email-main">
+                      Email{" "}
+                      <span className="filter-btn">
+                        <img src={MagnifierIcon} alt="magni" />
+                      </span>
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredProjects.map((project) => (
+                  {projectsData.map((project) => (
                     <tr
                       key={project.id}
                       className={
                         selectedRows.includes(project.id) ? "selected" : ""
                       }
                     >
-                      <td className="col-select">
+                      <td className="col-select-main">
                         <input
                           type="checkbox"
-                          className="row-select"
+                          className="row-select-main"
                           checked={selectedRows.includes(project.id)}
                           onChange={() => handleRowSelect(project.id)}
                         />
                       </td>
                       <td
-                        className="col-name truncate"
+                        className="col-name-main truncate"
                         data-fulltext={project.name}
                       >
                         {project.name}
                       </td>
-                      <td className="col-status">
+                      <td className="col-status-main">
                         <span
                           className={`status-badge ${getStatusClass(
                             project.status
@@ -283,37 +238,39 @@ const AdminTabs = () => {
                         </span>
                       </td>
                       <td
-                        className="col-location truncate"
+                        className="col-location-main truncate"
                         data-fulltext={project.location}
                       >
                         {project.location}
                       </td>
-                      <td className="col-contract truncate">
+                      <td className="col-contract-main truncate">
                         {project.contractNo}
                       </td>
-                      <td className="col-date">{project.beginning}</td>
-                      <td className="col-date">{project.end}</td>
+                      <td className="col-date-main">{project.beginning}</td>
+                      <td className="col-date-main">{project.end}</td>
                       <td
-                        className="col-manager truncate"
+                        className="col-manager-main truncate"
                         data-fulltext={project.projectManager}
                       >
                         {project.projectManager}
                       </td>
                       <td
-                        className="col-company truncate"
+                        className="col-company-main truncate"
                         data-fulltext={project.clientCompany}
                       >
                         {project.clientCompany}
                       </td>
                       <td
-                        className="col-represent truncate"
+                        className="col-represent-main truncate"
                         data-fulltext={project.clientRepresent}
                       >
                         {project.clientRepresent}
                       </td>
-                      <td className="col-phone truncate">{project.phone}</td>
+                      <td className="col-phone-main truncate">
+                        {project.phone}
+                      </td>
                       <td
-                        className="col-email truncate"
+                        className="col-email-main truncate"
                         data-fulltext={project.email}
                       >
                         {project.email}
@@ -422,16 +379,6 @@ const AdminTabs = () => {
               flex: 1,
             }}
           >
-            <div className="action-buttons">
-              <button
-                className="action-btn primary"
-                onClick={handleOpenActionModal}
-                disabled={selectedRows.length === 0}
-              >
-                Action on Selected ({selectedRows.length})
-              </button>
-            </div>
-
             <Tabs
               activeKey={activeTab}
               onSelect={(tab) => setActiveTab(tab)}
@@ -446,46 +393,12 @@ const AdminTabs = () => {
             </Tabs>
           </div>
 
-         <AdminButtons />
+          <AdminButtons />
         </div>
 
         {/* Render the appropriate tab content */}
         {renderTabContent()}
       </Container>
-
-      {/* Action Modal */}
-      {showActionModal && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h3 className="modal-title">Confirm Action</h3>
-              <button className="close-btn" onClick={handleCloseActionModal}>
-                ×
-              </button>
-            </div>
-            <div className="modal-body">
-              <p>
-                You are about to perform an action on {selectedRows.length}{" "}
-                selected project(s).
-              </p>
-              <p>
-                This action cannot be undone. Are you sure you want to proceed?
-              </p>
-            </div>
-            <div className="modal-footer">
-              <button className="action-btn" onClick={handleCloseActionModal}>
-                Cancel
-              </button>
-              <button
-                className="action-btn primary"
-                onClick={handleConfirmAction}
-              >
-                Confirm Action
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

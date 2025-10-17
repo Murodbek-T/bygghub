@@ -2,7 +2,7 @@ import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
-import { Form } from "react-bootstrap";
+import { Form, FormLabel } from "react-bootstrap";
 import closeIcon from "../../assets/x.svg";
 import LocationIcon from "../../assets/Location.svg";
 import WorkersIcon from "../../assets/Workers.svg";
@@ -44,6 +44,16 @@ const AdminButtons = () => {
   const [modalShow, setModalShow] = useState(false);
   const [checked, setChecked] = useState(false);
   const [activePanel, setActivePanel] = useState("main");
+  const [selectedRows, setSelectedRows] = useState([]);
+
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedFile(file);
+    console.log("Selected file:", file);
+    // Handle file upload logic here
+  };
 
   const handleClose = () => setCanvasShow(false);
   const handleShow = () => setCanvasShow(true);
@@ -63,6 +73,26 @@ const AdminButtons = () => {
         return "";
     }
   };
+
+  // Row selection handlers
+  const handleRowSelect = (projectId) => {
+    setSelectedRows((prev) =>
+      prev.includes(projectId)
+        ? prev.filter((id) => id !== projectId)
+        : [...prev, projectId]
+    );
+  };
+
+  const handleSelectAll = (e) => {
+    if (e.target.checked) {
+      setSelectedRows(projectsData.map((project) => project.id));
+    } else {
+      setSelectedRows([]);
+    }
+  };
+
+  const isAllSelected =
+    projectsData.length > 0 && selectedRows.length === projectsData.length;
 
   return (
     <div>
@@ -89,6 +119,14 @@ const AdminButtons = () => {
               <table className="projects-table">
                 <thead>
                   <tr>
+                    <th className="col-select">
+                      <input
+                        type="checkbox"
+                        className="row-select-main"
+                        checked={isAllSelected}
+                        onChange={handleSelectAll}
+                      />
+                    </th>
                     <th className="col-name">Name</th>
                     <th className="col-status">Status</th>
                     <th className="col-location">Location</th>
@@ -104,7 +142,20 @@ const AdminButtons = () => {
                 </thead>
                 <tbody>
                   {projectsData.map((project) => (
-                    <tr key={project.id}>
+                    <tr
+                      key={project.id}
+                      className={
+                        selectedRows.includes(project.id) ? "selected" : ""
+                      }
+                    >
+                      <td className="col-select">
+                        <input
+                          type="checkbox"
+                          className="row-select-main"
+                          checked={selectedRows.includes(project.id)}
+                          onChange={() => handleRowSelect(project.id)}
+                        />
+                      </td>
                       <td
                         className="col-name truncate"
                         data-fulltext={project.name}
@@ -160,6 +211,23 @@ const AdminButtons = () => {
                   ))}
                 </tbody>
               </table>
+              <div className="modal-import">
+                <p>Drag and drop or upload a file to get started</p>
+                <div className="modal-import-buttons">
+                  <input
+                    type="file"
+                    className="file-input"
+                    id="upload-file"
+                    onChange={handleFileChange}
+                  />
+                  <Button className="admin-btn-secondary">
+                    <label htmlFor="upload-file" className="file-label">
+                      Upload file
+                    </label>
+                  </Button>
+                  <Button>Manually enter date</Button>
+                </div>
+              </div>
             </div>
           </Modal.Body>
         </Modal>

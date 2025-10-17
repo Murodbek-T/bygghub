@@ -20,7 +20,6 @@ const CanvasAdmin = () => {
   return (
     <div className="team-selection-container">
       {/* Search Bar */}
-    
 
       {/* Role Filter Buttons */}
       <div className="role-filters mb-4">
@@ -42,32 +41,20 @@ const CanvasAdmin = () => {
       <div className="team-members-list">
         {admins.map((member) => (
           <div key={member.id} className="team-member-item">
+            <div className="member-info">
+              <div className="member-avatar">{member.avatar}</div>
+              <div className="member-details">
+                <div className="member-name">{member.name}</div>
+                <div className="member-role">{member.role}</div>
+              </div>
+            </div>
             <Form.Check
               type="checkbox"
               id={`member-${member.id}`}
               className="member-checkbox"
-              label={
-                <div className="member-info">
-                  <div className="member-avatar">{member.avatar}</div>
-                  <div className="member-details">
-                    <div className="member-name">{member.name}</div>
-                    <div className="member-role">{member.role}</div>
-                  </div>
-                </div>
-              }
             />
           </div>
         ))}
-      </div>
-
-      {/* Selected Count and Action Buttons */}
-      <div className="selection-actions mt-4">
-        <div className="selected-count">{admins.length} admins</div>
-        <div className="action-buttons">
-          <Button variant="primary" className="action-btn">
-            Add Selected
-          </Button>
-        </div>
       </div>
     </div>
   );

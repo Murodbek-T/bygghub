@@ -1,8 +1,8 @@
 .team-selection-container {
   padding: 10px;
   width: 100%;
-  background: white;
   border-radius: 8px;
+  background-color: transparent !important;
 }
 
 /* Search Section */
@@ -24,18 +24,19 @@
 }
 
 .search-input:focus {
-  border-color: #038ffd;
+  border-color: transparent !important;
   box-shadow: none;
 }
 
 /* Role Filters */
 .role-filters {
+  padding: 5px;
   overflow-x: auto;
 }
 
 .role-buttons {
   display: flex;
-  gap: 8px;
+  gap: 5px;
   padding-bottom: 8px;
   padding-top: 8px;
 }
@@ -47,15 +48,15 @@
   font-size: 12px;
   font-weight: 500;
   border: 1px solid #e9ecef;
-  background: white;
   color: #495057;
 }
 
 .role-btn.active,
 .role-btn:hover {
-  background-color: #038ffd;
-  border-color: #038ffd;
-  color: white;
+  background-color: white !important;
+  border-color: #0785f4;
+  color: #052d50 !important;
+  box-shadow: none;
 }
 
 .role-btn:not(.active):hover {
@@ -67,9 +68,17 @@
 .team-members-list {
   max-height: 400px;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .team-member-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  border-radius: 100px;
   padding: 12px;
   border-bottom: 1px solid #f1f3f4;
 }
@@ -83,11 +92,12 @@
   width: 18px;
   height: 18px;
   border: 2px solid #dee2e6;
+  border-radius: 50%;
 }
 
 .member-checkbox .form-check-input:checked {
-  background-color: #038ffd;
-  border-color: #038ffd;
+  background-color: #052d50 !important;
+  border-color: #052d50 !important;
 }
 
 .member-checkbox .form-check-label {

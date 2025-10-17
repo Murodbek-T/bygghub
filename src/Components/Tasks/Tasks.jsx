@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Form, Button, Offcanvas, InputGroup } from "react-bootstrap";
 import { ChevronLeft, Check, Search, Paperclip } from "react-bootstrap-icons";
 import "./Tasks.css";
+
+import workersIcon from "../../assets/Workers.svg";
 
 const Tasks = () => {
   // State for controlling the visibility of the off-canvas components
@@ -28,7 +30,47 @@ const Tasks = () => {
   const [dueDate, setDueDate] = useState("");
   const [dueTime, setDueTime] = useState("");
   const [notes, setNotes] = useState("");
+
   const [uploadedFiles, setUploadedFiles] = useState([]);
+  const [isDragOver, setIsDragOver] = useState(false);
+  const fileInputRef = useRef(null);
+
+  const handleFileUpload = (event) => {
+    const files = Array.from(event.target.files);
+    setUploadedFiles((prev) => [...prev, ...files]);
+  };
+
+  const removeFile = (index) => {
+    setUploadedFiles((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const handleDragOver = (event) => {
+    event.preventDefault();
+    setIsDragOver(true);
+  };
+
+  const handleDragLeave = (event) => {
+    event.preventDefault();
+    setIsDragOver(false);
+  };
+
+  const handleDrop = (event) => {
+    event.preventDefault();
+    setIsDragOver(false);
+    const files = Array.from(event.dataTransfer.files);
+    setUploadedFiles((prev) => [...prev, ...files]);
+  };
+
+  const getFileType = (fileName) => {
+    const extension = fileName.split(".").pop().toLowerCase();
+    if (["pdf"].includes(extension)) return "pdf";
+    if (["jpg", "jpeg", "png", "gif", "svg", "webp"].includes(extension))
+      return "image";
+    if (["doc", "docx", "txt"].includes(extension)) return "document";
+    if (["xls", "xlsx", "csv"].includes(extension)) return "spreadsheet";
+    if (["zip", "rar", "7z"].includes(extension)) return "zip";
+    return "file";
+  };
 
   // Mock data
   const teamMembers = [
@@ -89,24 +131,27 @@ const Tasks = () => {
   };
 
   // File upload handler
-  const handleFileUpload = (event) => {
-    const files = Array.from(event.target.files);
-    setUploadedFiles((prev) => [...prev, ...files]);
-    setShowDocuments(false);
-  };
-
-  const removeFile = (index) => {
-    setUploadedFiles((prev) => prev.filter((_, i) => i !== index));
-  };
 
   // Format date for display
   const formatDateDisplay = (date, time) => {
-    if (!date) return "Month Year | Time";
+    if (!date)
+      return (
+        <>
+          <p className="month-date">Month Year</p> <p className="time">Time</p>
+        </>
+      );
 
     const dateObj = new Date(date);
     const month = dateObj.toLocaleString("default", { month: "long" });
     const year = dateObj.getFullYear();
-    return `${month} ${year} | ${time || "Time"}`;
+    return (
+      <>
+        <p className="month-date">
+          {month} {year}
+        </p>{" "}
+        <p className="time">{time}</p>
+      </>
+    );
   };
 
   // Save task handler
@@ -133,11 +178,10 @@ const Tasks = () => {
   };
 
   // UI component for an input field that triggers an Offcanvas/Modal
-  const NavigableInput = ({ label, value, onClick, showArrow = true }) => (
+  const NavigableInput = ({ label, value, onClick }) => (
     <div className="navigable-input" onClick={onClick}>
       <div className="navigable-input-label">{label}</div>
       <div className="navigable-input-value">{value}</div>
-      {showArrow && <div className="navigable-input-arrow">{">"}</div>}
     </div>
   );
 
@@ -173,32 +217,46 @@ const Tasks = () => {
 
   // File upload component
   const FileUploadSection = () => (
-    <div className="file-upload-section">
+    <div
+      className={`file-upload-section ${isDragOver ? "drag-over" : ""}`}
+      onDragOver={handleDragOver}
+      onDragLeave={handleDragLeave}
+      onDrop={handleDrop}
+    >
       <h6>Upload Documents</h6>
       <input
         type="file"
+        ref={fileInputRef}
         multiple
         onChange={handleFileUpload}
         className="file-input"
       />
       <Button
         variant="outline-primary"
-        onClick={() => document.querySelector(".file-input").click()}
+        onClick={() => fileInputRef.current.click()}
         className="upload-btn"
       >
         Choose Files
       </Button>
 
+      <p style={{ marginTop: "12px", color: "#6c757d", fontSize: "14px" }}>
+        or drag and drop files here
+      </p>
+
       {uploadedFiles.length > 0 && (
         <div className="uploaded-files-list">
           <h6>Uploaded Files:</h6>
           {uploadedFiles.map((file, index) => (
-            <div key={index} className="uploaded-file-item">
+            <div
+              key={index}
+              className="uploaded-file-item"
+              data-file-type={getFileType(file.name)}
+            >
               <span>{file.name}</span>
               <Button
                 variant="outline-danger"
-                size="sm"
                 onClick={() => removeFile(index)}
+                title="Remove file"
               >
                 ×
               </Button>
@@ -213,18 +271,6 @@ const Tasks = () => {
     <div className="tasks-container">
       {/* Main Task Creation Form */}
       <Form className="task-form-main">
-        <div className="form-header">
-          <div className="header-title">Create Task</div>
-          <Button
-            variant="primary"
-            className="save-btn-main"
-            onClick={handleSaveTask}
-            disabled={!taskTitle}
-          >
-            Save
-          </Button>
-        </div>
-
         <Form.Group className="mb-3">
           <Form.Control
             type="text"
@@ -249,7 +295,7 @@ const Tasks = () => {
         <div className="nav-list-container">
           <NavigableInput
             label="Project"
-            value={selectedProject}
+            value={<p className="selected-project-name">{selectedProject}</p>}
             onClick={() => setShowProjectSelect(true)}
           />
           <NavigableInput
@@ -268,32 +314,34 @@ const Tasks = () => {
             onClick={() => setShowNotifications(true)}
           />
         </div>
+      </Form>
 
-        {/* Add Documents */}
+      <div className="documents-wrapper">
         <NavigableInput
           label={
-            <>
+            <div className="documents-wrapper">
               <Paperclip size={18} /> Add documents
-            </>
+            </div>
           }
           value={
-            uploadedFiles.length > 0 ? `${uploadedFiles.length} files` : ""
+            <p>
+              {uploadedFiles.length > 0 ? `${uploadedFiles.length} files` : ""}
+            </p>
           }
           onClick={() => setShowDocuments(true)}
         />
+      </div>
 
-        {/* Notes */}
-        <div className="notes-container">
-          <Form.Control
-            as="textarea"
-            rows={3}
-            placeholder="Notes"
-            className="input-field notes-field"
-            value={notes}
-            onChange={(e) => setNotes(e.target.value)}
-          />
-        </div>
-      </Form>
+      <div className="notes-container">
+        <Form.Control
+          as="textarea"
+          rows={3}
+          placeholder="Notes"
+          className="input-field notes-field"
+          value={notes}
+          onChange={(e) => setNotes(e.target.value)}
+        />
+      </div>
 
       {/* --- Offcanvas Components --- */}
 
@@ -323,18 +371,18 @@ const Tasks = () => {
           </Button>
         </div>
         <Offcanvas.Body className="offcanvas-body-custom">
-          <NavigableInput
-            label="Select project members"
-            value={
-              selectedMembers.length > 0
-                ? `${selectedMembers.length} selected`
-                : ""
-            }
+          <div
+            className="notification-team"
             onClick={() => {
               setShowNotifications(false);
               setShowAssignTo(true);
             }}
-          />
+          >
+            <div className="wrapper">
+              <img src={workersIcon} alt="workers" />
+              <p className="notification-title">Select project members</p>
+            </div>
+          </div>
 
           <hr className="divider" />
 

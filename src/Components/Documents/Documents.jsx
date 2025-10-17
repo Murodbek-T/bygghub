@@ -2,6 +2,8 @@ import React, { useState, useRef } from "react";
 import { Button, Form } from "react-bootstrap";
 import "./Documents.css";
 
+import ClipperIcon from "../../assets/Paperclip.svg";
+
 const Documents = () => {
   const [files, setFiles] = useState([]);
   const [isDragging, setIsDragging] = useState(false);
@@ -56,15 +58,15 @@ const Documents = () => {
 
   const getFileIcon = (file) => {
     if (file.type.startsWith("image/")) {
-      return "🖼️";
+      return ClipperIcon;
     } else if (file.type === "application/pdf") {
-      return "📄";
+      return ClipperIcon;
     } else if (file.type.includes("document") || file.type.includes("word")) {
-      return "📝";
+      return ClipperIcon;
     } else if (file.type.includes("sheet") || file.type.includes("excel")) {
-      return "📊";
+      return ClipperIcon;
     } else {
-      return "📎";
+      return ClipperIcon;
     }
   };
 
@@ -88,7 +90,6 @@ const Documents = () => {
         onDrop={handleDrop}
       >
         <div className="drop-zone-content">
-          <div className="upload-icon">📁</div>
           <h3 className="upload-title">Drag and drop your documents</h3>
           <p className="upload-subtitle">here, or click "Upload File"</p>
 
@@ -102,7 +103,7 @@ const Documents = () => {
 
           <Button
             variant="primary"
-            className="upload-button"
+            className="upload-button admin-btn-secondary"
             onClick={handleUploadClick}
           >
             Upload file
@@ -113,15 +114,13 @@ const Documents = () => {
       {/* Uploaded Files List */}
       {files.length > 0 && (
         <div className="uploaded-files">
-          <h4 className="files-title">Uploaded Files ({files.length})</h4>
           <div className="files-list">
             {files.map((file, index) => (
               <div key={index} className="file-item">
                 <div className="file-info">
-                  <span className="file-icon">{getFileIcon(file)}</span>
+                  <img src={getFileIcon(file)} alt="file" />
                   <div className="file-details">
                     <div className="file-name">{file.name}</div>
-                    <div className="file-size">{formatFileSize(file.size)}</div>
                   </div>
                 </div>
                 <Button

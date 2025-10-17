@@ -1,6 +1,5 @@
 .search-container {
   width: 100%;
-  max-width: 500px;
   position: relative;
   margin: 0 auto;
   font-family: "DM Sans", sans-serif;
@@ -11,14 +10,14 @@
   display: flex;
   align-items: center;
   background-color: #edf5fb;
-  border-radius: 12px;
+  border-radius: 20px;
   padding: 4px 12px;
 }
 
 .search-input {
   width: 100%;
   border: none;
-  background: transparent;
+  background: #052d500d;
   font-size: 16px;
   padding: 12px;
   outline: none;
@@ -33,7 +32,7 @@
   width: 20px;
   height: 20px;
   position: absolute;
-  right: 15px;
+  right: 30px;
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
