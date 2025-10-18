@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { Form, InputGroup, Button } from "react-bootstrap";
 import "./Team.css";
 
-const Team = () => {
+const Team = ({ onWorkersSelect }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedRole, setSelectedRole] = useState("Everyone");
+  const [selectedWorkers, setSelectedWorkers] = useState([]);
 
   const teamMembers = [
     { id: 1, name: "Alex Gerhard", role: "Foreman", avatar: "AG" },
@@ -30,6 +31,26 @@ const Team = () => {
 
     return matchesSearch && matchesRole;
   });
+
+  // Handle worker selection
+  const handleWorkerSelect = (workerName, isSelected) => {
+    let updatedWorkers;
+
+    if (isSelected) {
+      updatedWorkers = [...selectedWorkers, workerName];
+    } else {
+      updatedWorkers = selectedWorkers.filter((name) => name !== workerName);
+    }
+
+    setSelectedWorkers(updatedWorkers);
+
+    // Send only worker names back to parent
+    if (onWorkersSelect) {
+      onWorkersSelect(updatedWorkers);
+    }
+  };
+
+
 
   return (
     <div className="team-selection-container">
@@ -62,6 +83,10 @@ const Team = () => {
         </div>
       </div>
 
+ 
+
+   
+
       {/* Team Members List */}
       <div className="team-members-list">
         {filteredMembers.map((member) => (
@@ -77,6 +102,10 @@ const Team = () => {
               type="checkbox"
               id={`member-${member.id}`}
               className="member-checkbox"
+              checked={selectedWorkers.includes(member.name)}
+              onChange={(e) =>
+                handleWorkerSelect(member.name, e.target.checked)
+              }
             />
           </div>
         ))}

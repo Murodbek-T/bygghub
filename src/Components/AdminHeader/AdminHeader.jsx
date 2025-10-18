@@ -1,6 +1,7 @@
 import React from "react";
 import "./AdminHeader.css";
 import logo from "../../img/logo.png";
+import sublogo from "../../assets/sublogo.png";
 import { Link } from "react-router-dom";
 import magnifierIcon from "../../assets/magnifier.svg";
 import userIcon from "../../assets/user.svg";
@@ -39,6 +40,7 @@ const AdminHeader = () => {
           className="d-inline-block align-top logo-img"
           alt="ByggHub Logo"
         />
+        <p>Construction management software</p>
       </Link>
 
       <div className="admin-icons">

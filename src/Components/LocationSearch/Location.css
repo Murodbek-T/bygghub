@@ -16,6 +16,7 @@
 
 .search-input {
   width: 100%;
+  height: 56px;
   border: none;
   background: #052d500d;
   font-size: 16px;
@@ -26,6 +27,7 @@
 
 .search-input::placeholder {
   color: #6c757d;
+  font-size: 16px;
 }
 
 .search-icon {
@@ -49,12 +51,15 @@
 
 .result-card {
   background-color: white;
-  padding: 12px 16px;
+  padding: 10px 20px;
   border-radius: 12px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
   transition: all 0.2s ease-in-out;
   cursor: pointer;
   border: 1px solid #edf1f7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .result-card:hover {
@@ -63,10 +68,11 @@
 }
 
 .result-title {
-  color: #038ffd;
-  font-weight: 600;
-  font-size: 15px;
+  color: #052d50;
+  font-weight: 500;
+  font-size: 16px;
   margin-bottom: 2px;
+  margin-top: 2px;
 }
 
 .result-subtitle {

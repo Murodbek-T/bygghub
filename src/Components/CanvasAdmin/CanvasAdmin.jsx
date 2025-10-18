@@ -15,12 +15,40 @@ const admins = [
 
 const roles = ["Team project", "Everyone", "Foremans", "Builders", "Surveyors"];
 
-const CanvasAdmin = () => {
-  const [selectedRole, setSelectedRole] = useState("Team project");
+const CanvasAdmin = ({ onAdminsSelect }) => {
+  const [selectedRole, setSelectedRole] = useState("Everyone");
+  const [selectedAdmins, setSelectedAdmins] = useState([]);
+
+  const filteredAdmins = admins.filter((member) => {
+    const matchesRole =
+      selectedRole === "Everyone" ||
+      member.role.toLowerCase() === selectedRole.toLowerCase().slice(0, -1);
+
+    return matchesRole;
+  });
+
+  // Handle admin selection
+  const handleAdminSelect = (adminName, isSelected) => {
+    let updatedAdmins;
+
+    if (isSelected) {
+      updatedAdmins = [...selectedAdmins, adminName];
+    } else {
+      updatedAdmins = selectedAdmins.filter((name) => name !== adminName);
+    }
+
+    setSelectedAdmins(updatedAdmins);
+
+    // Send only admin names back to parent
+    if (onAdminsSelect) {
+      onAdminsSelect(updatedAdmins);
+    }
+  };
+
+
+
   return (
     <div className="team-selection-container">
-      {/* Search Bar */}
-
       {/* Role Filter Buttons */}
       <div className="role-filters mb-4">
         <div className="role-buttons">
@@ -37,9 +65,11 @@ const CanvasAdmin = () => {
         </div>
       </div>
 
+
+
       {/* Team Members List */}
       <div className="team-members-list">
-        {admins.map((member) => (
+        {filteredAdmins.map((member) => (
           <div key={member.id} className="team-member-item">
             <div className="member-info">
               <div className="member-avatar">{member.avatar}</div>
@@ -52,6 +82,8 @@ const CanvasAdmin = () => {
               type="checkbox"
               id={`member-${member.id}`}
               className="member-checkbox"
+              checked={selectedAdmins.includes(member.name)}
+              onChange={(e) => handleAdminSelect(member.name, e.target.checked)}
             />
           </div>
         ))}

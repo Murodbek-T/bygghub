@@ -4,7 +4,7 @@ import "./Documents.css";
 
 import ClipperIcon from "../../assets/Paperclip.svg";
 
-const Documents = () => {
+const Documents = ({ onDocumentsSelect }) => {
   const [files, setFiles] = useState([]);
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef(null);
@@ -40,7 +40,13 @@ const Documents = () => {
         file.type.includes("document")
     );
 
-    setFiles((prev) => [...prev, ...validFiles]);
+    const updatedFiles = [...files, ...validFiles];
+    setFiles(updatedFiles);
+
+    // Send document names back to parent
+    if (onDocumentsSelect) {
+      onDocumentsSelect(updatedFiles.map((file) => file.name));
+    }
 
     // Reset file input
     if (fileInputRef.current) {
@@ -53,7 +59,20 @@ const Documents = () => {
   };
 
   const removeFile = (index) => {
-    setFiles((prev) => prev.filter((_, i) => i !== index));
+    const updatedFiles = files.filter((_, i) => i !== index);
+    setFiles(updatedFiles);
+
+    // Send updated document names back to parent
+    if (onDocumentsSelect) {
+      onDocumentsSelect(updatedFiles.map((file) => file.name));
+    }
+  };
+
+  const clearAllFiles = () => {
+    setFiles([]);
+    if (onDocumentsSelect) {
+      onDocumentsSelect([]);
+    }
   };
 
   const getFileIcon = (file) => {
@@ -121,6 +140,7 @@ const Documents = () => {
                   <img src={getFileIcon(file)} alt="file" />
                   <div className="file-details">
                     <div className="file-name">{file.name}</div>
+                    <div className="file-size">{formatFileSize(file.size)}</div>
                   </div>
                 </div>
                 <Button

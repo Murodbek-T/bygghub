@@ -21,9 +21,11 @@ body {
 }
 
 .admin-btn-secondary {
-  background: #b8ddf9 !important;
+  background: #b8ddf98a !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color: var(--primary-color) !important;
-  border: 1px solid white !important;
+  border: 1px solid rgba(255, 255, 255, 0.711) !important;
 }
 
 .modal {
@@ -56,12 +58,15 @@ body {
 }
 
 .modal-text {
+  color: #052d50;
+  line-height: 22px;
+  font-weight: 600;
   font-size: 18px;
 }
 
 .table-container {
   width: 100%;
-  height: 100%;
+  height: fit-content;
   overflow-x: auto;
   background-color: white;
   box-shadow: 0px 3px 15px 0px #0a29471a;
@@ -86,8 +91,8 @@ body {
   text-align: left;
   font-weight: 500;
   color: #052d50;
-  font-size: 14px;
-  text-transform: uppercase;
+  font-size: 15px;
+  font-family: "DM Sans", sans-serif;
   letter-spacing: 0.5px;
   border-right: 1px solid #e9ecef;
   white-space: nowrap;
@@ -123,7 +128,6 @@ body {
   width: 100%;
   min-width: 50px;
   max-width: 50px;
-  text-align: center;
 }
 
 .col-name {
@@ -152,7 +156,7 @@ body {
 
 .col-date {
   width: 300px;
-  min-width: 100px;
+  min-width: 150px;
   max-width: 300px;
 }
 
@@ -219,6 +223,8 @@ body {
 .offcanvas {
   width: 550px !important;
   background-color: #eef5fb;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
 .canvas-body {
   display: grid;
@@ -253,7 +259,7 @@ body {
 }
 
 .custom-switch .form-check-input {
-  width: 70px;
+  width: 65px;
   height: 26px;
   background-color: #e5e5e5;
   border-radius: 34px;
@@ -284,7 +290,7 @@ body {
 }
 
 .custom-switch .form-check-input:checked::before {
-  transform: translateX(35px);
+  transform: translateX(30px);
   top: 3px;
 }
 
@@ -347,6 +353,7 @@ body {
   text-align: center;
   font-weight: 600;
   color: #052d50;
+  font-size: 17px;
 }
 .subpanel-content {
   background-color: white;
@@ -405,4 +412,36 @@ body {
   -webkit-box-shadow: 5px 6px 24px -11px rgba(34, 60, 80, 0.23) inset;
   -moz-box-shadow: 5px 6px 24px -11px rgba(34, 60, 80, 0.23) inset;
   box-shadow: 5px 6px 24px -11px rgba(34, 60, 80, 0.23) inset;
+}
+
+.canvas-back-button {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e9ecef;
+  box-shadow: inset 5px 4px 5px 1px rgba(130, 130, 130, 0.41);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.canvas-back-button img {
+  width: 19px;
+  height: 19px;
+}
+
+.option-preview {
+  color: #052d50;
+  font-size: 16px;
+}
+.status-wrapper {
+  position: relative;
+  width: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.project-status {
+  position: absolute;
+  right: 20px;
 }

@@ -23,3 +23,12 @@
   border-radius: 999px;
   color: #010509;
 }
+.navbar-brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar-brand p {
+  color: rgba(255, 255, 255, 0.784);
+  font-size: 15px;
+}

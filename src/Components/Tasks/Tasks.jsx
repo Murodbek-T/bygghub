@@ -1,11 +1,35 @@
 import React, { useState, useRef } from "react";
 import { Form, Button, Offcanvas, InputGroup } from "react-bootstrap";
-import { ChevronLeft, Check, Search, Paperclip } from "react-bootstrap-icons";
+import { Check, Search, Paperclip } from "react-bootstrap-icons";
 import "./Tasks.css";
+import ChevronLeft2 from "../../assets/chevron.svg";
 
 import workersIcon from "../../assets/Workers.svg";
 
-const Tasks = () => {
+// Export the SaveButton component
+export const SaveButton = ({
+  onSave,
+  // Add any other props you need for validation
+}) => {
+  const handleClick = () => {
+    // Call the onSave callback from AdminButtons
+    if (onSave) {
+      onSave();
+    }
+  };
+
+  return (
+    <Button
+      className="admin-btn-primary"
+      onClick={handleClick}
+    
+    >
+      Save
+    </Button>
+  );
+};
+
+const Tasks = ({ onTasksSelect, onSaveButtonRef }) => {
   // State for controlling the visibility of the off-canvas components
   const [showNotifications, setShowNotifications] = useState(false);
   const [showAssignTo, setShowAssignTo] = useState(false);
@@ -130,8 +154,6 @@ const Tasks = () => {
     setShowDueDate(false);
   };
 
-  // File upload handler
-
   // Format date for display
   const formatDateDisplay = (date, time) => {
     if (!date)
@@ -173,10 +195,17 @@ const Tasks = () => {
     };
 
     console.log("Saving task:", taskData);
-    alert("Task saved successfully!");
-    // Here you would typically send the data to your backend API
-  };
 
+    // Send task data to parent via callback
+    if (onTasksSelect) {
+      onTasksSelect([taskData]);
+    }
+  };
+  React.useEffect(() => {
+    if (onSaveButtonRef) {
+      onSaveButtonRef.current = handleSaveTask;
+    }
+  }, [onSaveButtonRef, handleSaveTask]);
   // UI component for an input field that triggers an Offcanvas/Modal
   const NavigableInput = ({ label, value, onClick }) => (
     <div className="navigable-input" onClick={onClick}>
@@ -320,7 +349,10 @@ const Tasks = () => {
         <NavigableInput
           label={
             <div className="documents-wrapper">
-              <Paperclip size={18} /> Add documents
+              <Paperclip size={18} />{" "}
+              {uploadedFiles.length > 0
+                ? `${uploadedFiles.length} files uploaded`
+                : "Add documents"}
             </div>
           }
           value={
@@ -343,8 +375,6 @@ const Tasks = () => {
         />
       </div>
 
-      {/* --- Offcanvas Components --- */}
-
       {/* 1. Notifications Offcanvas */}
       <Offcanvas
         show={showNotifications}
@@ -353,12 +383,12 @@ const Tasks = () => {
         className="tasks-offcanvas"
       >
         <div className="offcanvas-header-custom">
-          <div
-            className="back-button"
+          <button
+            className="canvas-back-button"
             onClick={() => setShowNotifications(false)}
           >
-            <ChevronLeft size={24} />
-          </div>
+            <img src={ChevronLeft2} alt="chevron" />
+          </button>
           <Offcanvas.Title className="offcanvas-title-custom">
             Notifications
           </Offcanvas.Title>
@@ -444,15 +474,15 @@ const Tasks = () => {
         className="tasks-offcanvas"
       >
         <div className="offcanvas-header-custom">
-          <div
-            className="back-button"
+          <button
+            className="canvas-back-button"
             onClick={() => {
               setShowAssignTo(false);
               setShowNotifications(true);
             }}
           >
-            <ChevronLeft size={24} />
-          </div>
+            <img src={ChevronLeft2} alt="chevron" />
+          </button>
           <Offcanvas.Title className="offcanvas-title-custom">
             Assign to
           </Offcanvas.Title>
@@ -513,15 +543,15 @@ const Tasks = () => {
         className="tasks-offcanvas"
       >
         <div className="offcanvas-header-custom">
-          <div
-            className="back-button"
+          <button
+            className="canvas-back-button"
             onClick={() => {
               setShowRepeat(false);
               setShowNotifications(true);
             }}
           >
-            <ChevronLeft size={24} />
-          </div>
+            <img src={ChevronLeft2} alt="chevron" />
+          </button>
           <Offcanvas.Title className="offcanvas-title-custom">
             Repeat
           </Offcanvas.Title>
@@ -555,15 +585,16 @@ const Tasks = () => {
         className="tasks-offcanvas"
       >
         <div className="offcanvas-header-custom">
-          <div
-            className="back-button"
+          <button
+            className="canvas-back-button"
             onClick={() => setShowProjectSelect(false)}
           >
-            <ChevronLeft size={24} />
-          </div>
+            <img src={ChevronLeft2} alt="chevron" />
+          </button>
           <Offcanvas.Title className="offcanvas-title-custom">
             Select Project
           </Offcanvas.Title>
+          <Button className="admin-btn-primary">Save</Button>
         </div>
         <Offcanvas.Body className="offcanvas-body-custom">
           <div className="project-list-container">
@@ -588,12 +619,21 @@ const Tasks = () => {
         className="tasks-offcanvas"
       >
         <div className="offcanvas-header-custom">
-          <div className="back-button" onClick={() => setShowDocuments(false)}>
-            <ChevronLeft size={24} />
-          </div>
+          <button
+            className="canvas-back-button"
+            onClick={() => setShowDocuments(false)}
+          >
+            <img src={ChevronLeft2} alt="chevron" />
+          </button>
           <Offcanvas.Title className="offcanvas-title-custom">
             Add Documents
           </Offcanvas.Title>
+          <Button
+            className="admin-btn-primary"
+            onClick={() => setShowDocuments(false)}
+          >
+            Save
+          </Button>
         </div>
         <Offcanvas.Body className="offcanvas-body-custom">
           <FileUploadSection />
@@ -608,9 +648,12 @@ const Tasks = () => {
         className="tasks-offcanvas"
       >
         <div className="offcanvas-header-custom">
-          <div className="back-button" onClick={() => setShowStartDate(false)}>
-            <ChevronLeft size={24} />
-          </div>
+          <button
+            className="canvas-back-button"
+            onClick={() => setShowStartDate(false)}
+          >
+            <img src={ChevronLeft2} alt="chevron" />
+          </button>
           <Offcanvas.Title className="offcanvas-title-custom">
             Start Date & Time
           </Offcanvas.Title>
@@ -650,9 +693,12 @@ const Tasks = () => {
         className="tasks-offcanvas"
       >
         <div className="offcanvas-header-custom">
-          <div className="back-button" onClick={() => setShowDueDate(false)}>
-            <ChevronLeft size={24} />
-          </div>
+          <button
+            className="canvas-back-button"
+            onClick={() => setShowDueDate(false)}
+          >
+            <img src={ChevronLeft2} alt="chevron" />
+          </button>
           <Offcanvas.Title className="offcanvas-title-custom">
             Due Date & Time
           </Offcanvas.Title>
