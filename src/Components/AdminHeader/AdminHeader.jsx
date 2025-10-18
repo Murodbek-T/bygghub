@@ -1,7 +1,7 @@
 import React from "react";
 import "./AdminHeader.css";
-import logo from "../../img/logo.png";
-import sublogo from "../../assets/sublogo.png";
+import logo from "../../assets/admin-logo.png";
+
 import { Link } from "react-router-dom";
 import magnifierIcon from "../../assets/magnifier.svg";
 import userIcon from "../../assets/user.svg";
@@ -35,12 +35,9 @@ const AdminHeader = () => {
       <Link to="/" className="navbar-brand d-flex align-items-center">
         <img
           src={logo}
-          width="205"
-          height="56"
           className="d-inline-block align-top logo-img"
           alt="ByggHub Logo"
         />
-        <p>Construction management software</p>
       </Link>
 
       <div className="admin-icons">

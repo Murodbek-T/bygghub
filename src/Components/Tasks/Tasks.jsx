@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { Form, Button, Offcanvas, InputGroup } from "react-bootstrap";
-import { Check, Search, Paperclip } from "react-bootstrap-icons";
+import { Check, Search, Paperclip, ChevronRight } from "react-bootstrap-icons";
 import "./Tasks.css";
 import ChevronLeft2 from "../../assets/chevron.svg";
 
@@ -19,11 +19,7 @@ export const SaveButton = ({
   };
 
   return (
-    <Button
-      className="admin-btn-primary"
-      onClick={handleClick}
-    
-    >
+    <Button className="admin-btn-primary" onClick={handleClick}>
       Save
     </Button>
   );
@@ -299,8 +295,8 @@ const Tasks = ({ onTasksSelect, onSaveButtonRef }) => {
   return (
     <div className="tasks-container">
       {/* Main Task Creation Form */}
-      <Form className="task-form-main">
-        <Form.Group className="mb-3">
+      <Form className="form-group">
+        <Form.Group>
           <Form.Control
             type="text"
             placeholder="Task Title"
@@ -308,9 +304,7 @@ const Tasks = ({ onTasksSelect, onSaveButtonRef }) => {
             value={taskTitle}
             onChange={(e) => setTaskTitle(e.target.value)}
           />
-        </Form.Group>
-
-        <Form.Group className="mb-3">
+          <div className="separator"></div>
           <Form.Control
             type="text"
             placeholder="Task Description"
@@ -318,6 +312,7 @@ const Tasks = ({ onTasksSelect, onSaveButtonRef }) => {
             value={taskDescription}
             onChange={(e) => setTaskDescription(e.target.value)}
           />
+          <div className="separator"></div>
         </Form.Group>
 
         {/* Navigable List */}
@@ -366,7 +361,7 @@ const Tasks = ({ onTasksSelect, onSaveButtonRef }) => {
 
       <div className="notes-container">
         <Form.Control
-          as="textarea"
+          as="input"
           rows={3}
           placeholder="Notes"
           className="input-field notes-field"
@@ -381,6 +376,10 @@ const Tasks = ({ onTasksSelect, onSaveButtonRef }) => {
         onHide={() => setShowNotifications(false)}
         placement="end"
         className="tasks-offcanvas"
+        style={{
+          height: "calc(100vh - 100px)",
+          top: "100px",
+        }}
       >
         <div className="offcanvas-header-custom">
           <button
@@ -416,53 +415,58 @@ const Tasks = ({ onTasksSelect, onSaveButtonRef }) => {
 
           <hr className="divider" />
 
-          <div className="reminder-option-toggle">
-            <span>Auto Reminder</span>
-            <Form.Check
-              type="switch"
-              id="auto-reminder-switch"
-              checked={reminderType === "auto"}
-              onChange={() => setReminderType("auto")}
-              className="custom-toggle"
-            />
-          </div>
+          <Form.Group className="form-group">
+            <div className="reminder-option-toggle">
+              <span>Auto Reminder</span>
+              <Form.Check
+                type="switch"
+                id="auto-reminder-switch"
+                checked={reminderType === "auto"}
+                onChange={() => setReminderType("auto")}
+                className="custom-toggle"
+              />
+            </div>
 
-          <div className="reminder-option-toggle mb-3">
-            <span>Custom Reminder</span>
-            <Form.Check
-              type="switch"
-              id="custom-reminder-switch"
-              checked={reminderType === "custom"}
-              onChange={() => setReminderType("custom")}
-              className="custom-toggle green-toggle"
-            />
-          </div>
+            <div className="reminder-option-toggle">
+              <span>Custom Reminder</span>
+              <Form.Check
+                type="switch"
+                id="custom-reminder-switch"
+                checked={reminderType === "custom"}
+                onChange={() => setReminderType("custom")}
+                className="custom-toggle green-toggle"
+              />
+            </div>
 
-          {reminderType === "custom" && (
-            <Form.Group className="mb-4 custom-reminder-input">
+            {reminderType === "custom" && (
               <Form.Control
-                as="textarea"
+                as="input"
                 rows={2}
                 placeholder="Write your own reminder for the team."
                 value={customReminderText}
                 onChange={(e) => setCustomReminderText(e.target.value)}
                 className="input-field"
               />
-            </Form.Group>
-          )}
+            )}
+          </Form.Group>
 
-          <NavigableInput
-            label="Repeat"
-            value={
-              repeatOption
-                ? repeatOption.charAt(0).toUpperCase() + repeatOption.slice(1)
-                : ""
-            }
-            onClick={() => {
-              setShowNotifications(false);
-              setShowRepeat(true);
-            }}
-          />
+          <div className="form-group repeat">
+            <NavigableInput
+              label="Repeat"
+              value={
+                <ChevronRight
+                  size={20}
+                  color="#052d50"
+                  fontWeight={700}
+                  className="chevron-right"
+                />
+              }
+              onClick={() => {
+                setShowNotifications(false);
+                setShowRepeat(true);
+              }}
+            />
+          </div>
         </Offcanvas.Body>
       </Offcanvas>
 
@@ -472,6 +476,10 @@ const Tasks = ({ onTasksSelect, onSaveButtonRef }) => {
         onHide={() => setShowAssignTo(false)}
         placement="end"
         className="tasks-offcanvas"
+        style={{
+          height: "calc(100vh - 100px)",
+          top: "100px",
+        }}
       >
         <div className="offcanvas-header-custom">
           <button
@@ -541,6 +549,10 @@ const Tasks = ({ onTasksSelect, onSaveButtonRef }) => {
         onHide={() => setShowRepeat(false)}
         placement="end"
         className="tasks-offcanvas"
+        style={{
+          height: "calc(100vh - 100px)",
+          top: "100px",
+        }}
       >
         <div className="offcanvas-header-custom">
           <button
@@ -583,6 +595,10 @@ const Tasks = ({ onTasksSelect, onSaveButtonRef }) => {
         onHide={() => setShowProjectSelect(false)}
         placement="end"
         className="tasks-offcanvas"
+        style={{
+          height: "calc(100vh - 100px)",
+          top: "100px",
+        }}
       >
         <div className="offcanvas-header-custom">
           <button
@@ -617,6 +633,10 @@ const Tasks = ({ onTasksSelect, onSaveButtonRef }) => {
         onHide={() => setShowDocuments(false)}
         placement="end"
         className="tasks-offcanvas"
+        style={{
+          height: "calc(100vh - 100px)",
+          top: "100px",
+        }}
       >
         <div className="offcanvas-header-custom">
           <button
@@ -646,6 +666,10 @@ const Tasks = ({ onTasksSelect, onSaveButtonRef }) => {
         onHide={() => setShowStartDate(false)}
         placement="end"
         className="tasks-offcanvas"
+        style={{
+          height: "calc(100vh - 100px)",
+          top: "100px",
+        }}
       >
         <div className="offcanvas-header-custom">
           <button
@@ -691,6 +715,10 @@ const Tasks = ({ onTasksSelect, onSaveButtonRef }) => {
         onHide={() => setShowDueDate(false)}
         placement="end"
         className="tasks-offcanvas"
+        style={{
+          height: "calc(100vh - 100px)",
+          top: "100px",
+        }}
       >
         <div className="offcanvas-header-custom">
           <button

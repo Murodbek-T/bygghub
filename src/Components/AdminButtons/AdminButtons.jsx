@@ -323,7 +323,15 @@ const AdminButtons = () => {
         <Button className="admin-btn-primary" onClick={handleShow}>
           Add project
         </Button>
-        <Offcanvas show={canvasShow} onHide={handleClose} placement="end">
+        <Offcanvas
+          show={canvasShow}
+          onHide={handleClose}
+          placement="end"
+          style={{
+            height: "calc(100vh - 100px)",
+            top: "100px",
+          }}
+        >
           {renderHeader()}
           <Offcanvas.Body className="canvas-body">
             <AnimatePresence mode="wait">
@@ -349,8 +357,7 @@ const AdminButtons = () => {
                           handleInputChange("projectName", e.target.value)
                         }
                       />
-                    </Form.Group>
-                    <Form.Group className="form-group">
+                      <div className="separator"></div>
                       <div className="form-check canvas-input">
                         <h6 className="check-title">Use location as name</h6>
                         <Form.Check
@@ -367,8 +374,9 @@ const AdminButtons = () => {
                         />
                       </div>
                     </Form.Group>
+
                     {/* Navigation options with previews */}
-                    <div className="option-list">
+                    <Form.Group className="form-group">
                       <button
                         type="button"
                         className="option-item"
@@ -390,6 +398,7 @@ const AdminButtons = () => {
                           <img src={Chevron} alt="chevron" />
                         </span>
                       </button>
+                      <div className="separator"></div>
                       <button
                         type="button"
                         className="option-item"
@@ -411,6 +420,7 @@ const AdminButtons = () => {
                           <img src={Chevron} alt="chevron" />
                         </span>
                       </button>
+                      <div className="separator"></div>
                       <button
                         type="button"
                         className="option-item"
@@ -432,6 +442,9 @@ const AdminButtons = () => {
                           <img src={Chevron} alt="chevron" />
                         </span>
                       </button>
+                    </Form.Group>
+                    <Form.Group className="form-group">
+                      {" "}
                       <button
                         type="button"
                         className="option-item"
@@ -445,7 +458,7 @@ const AdminButtons = () => {
                                 {formData.documents.length} documents
                               </div>
                             ) : (
-                              <div>Add documents</div>
+                              <div className="dark-title">Add documents</div>
                             )}
                           </div>
                         </span>
@@ -464,7 +477,7 @@ const AdminButtons = () => {
                             {formData.tasks.length > 0 ? (
                               <div className="option-preview">Edit task</div>
                             ) : (
-                              <div>Add tasks</div>
+                              <div className="dark-title">Add tasks</div>
                             )}
                           </div>
                         </span>
@@ -472,8 +485,8 @@ const AdminButtons = () => {
                           <img src={Chevron} alt="chevron" />
                         </span>
                       </button>
-                    </div>
-                    <Form.Group className="form-group">
+                    </Form.Group>
+                    <Form.Group className="form-group form-description">
                       <Form.Control
                         type="text"
                         className="canvas-input"
@@ -486,7 +499,7 @@ const AdminButtons = () => {
                     </Form.Group>
                     <button
                       type="button"
-                      className="option-item"
+                      className="option-item status-select"
                       onClick={() => setActivePanel("status")}
                     >
                       <span className="icon-tab">
@@ -511,6 +524,7 @@ const AdminButtons = () => {
                         <img src={Chevron} alt="chevron" />
                       </span>
                     </button>
+
                     <Form.Group className="form-group">
                       <Form.Control
                         type="text"
@@ -521,8 +535,7 @@ const AdminButtons = () => {
                           handleInputChange("companyName", e.target.value)
                         }
                       />
-                    </Form.Group>
-                    <Form.Group className="form-group">
+                      <div className="separator"></div>
                       <Form.Control
                         type="text"
                         className="canvas-input"
@@ -532,8 +545,7 @@ const AdminButtons = () => {
                           handleInputChange("regNo", e.target.value)
                         }
                       />
-                    </Form.Group>
-                    <Form.Group className="form-group">
+                      <div className="separator"></div>
                       <Form.Control
                         type="text"
                         className="canvas-input"

@@ -6,8 +6,6 @@
   font-family: "DM Sans", sans-serif;
 }
 
-
-
 .task-form-main {
   background-color: white;
   padding: 15px;
@@ -41,19 +39,17 @@
 /* Input Fields (Task Title, Description, Notes) */
 .input-field {
   border: none !important;
-  border-bottom: 1px solid #f0f0f0 !important;
-  padding: 10px 0;
+  padding: 15px 15px;
   border-radius: 0 !important;
   background-color: transparent !important;
   box-shadow: none !important;
   font-size: 1.05em;
   color: #333;
 }
-.input-field:focus {
-  border-bottom: 2px solid #007bff !important;
-}
+
 .input-field::placeholder {
   color: #8296a7;
+  font-size: 16px;
 }
 
 .title-field,
@@ -66,7 +62,7 @@
 .notes-container,
 .navigable-input-wrapper {
   background-color: white;
-  padding: 0;
+  padding: 0px 15px;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -102,10 +98,9 @@
 
 /* Notes specific styling */
 .notes-container .input-field {
-  border: 1px solid #e9ecef !important;
   border-radius: 8px !important;
   padding: 10px;
-  min-height: 80px;
+  min-height: 50px;
 }
 
 /* --- Offcanvas Overrides --- */
@@ -158,8 +153,7 @@
   background-color: white;
   padding: 15px;
   margin-bottom: 10px;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border-radius: 26px;
   font-weight: 500;
   color: #333;
 }
@@ -168,7 +162,7 @@
 .custom-toggle .form-check-input {
   width: 50px;
   height: 24px;
-  background-color: #ced4da;
+  background-color: #78787833;
   border: none;
   border-radius: 12px;
   position: relative;
@@ -359,6 +353,17 @@
   border-radius: 12px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   overflow: hidden;
+}
+
+.repeat {
+  position: relative;
+  padding: 5px 15px;
+}
+.chevron-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 15px;
 }
 
 .list-item-with-check {
